@@ -1,4 +1,4 @@
-package Filter
+package SparkRdd
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.{SparkConf, SparkContext}
@@ -10,7 +10,7 @@ object Filter {
     val conf = new SparkConf().setAppName("online_retail").setMaster("local[4]")
     val sc = new SparkContext(conf)
 
-    val retailRDD = sc.textFile("/home/ferhat/DataSets").mapPartitionsWithIndex(
+    val retailRDD = sc.textFile("OnlineRetail.csv").mapPartitionsWithIndex(
       (idx, iter) => if (idx==0) iter.drop(1) else iter
     )
 
